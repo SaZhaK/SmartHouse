@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" >
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Login page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header>
+</header>
+<main>
+    <div class="main-card">
+        <form method="POST" action="/login" th:object="${user}">
+            <p class="heading">Логин:</p>
+            <input name="username" th:field="${user.username}"
+                   class="input-field" type="email" placeholder="Username" autofocus="true">
 
-<div>
-    <form method="POST" action="/login">
-        <h2>Вход в систему</h2>
-        <div>
-            <input name="username" type="text" placeholder="Username" autofocus="true"/>
-            <input name="password" type="password" placeholder="Password"/>
-            <button type="submit">Log In</button>
-            <h4><a href="/registration">Зарегистрироваться</a></h4>
-        </div>
-    </form>
-</div>
-
-<br>
-<a href="/">Главная</a>
-
+            <p class="heading">Пароль:</p>
+            <input class="input-field" name="password" th:field="${user.password}"
+                   type="password" placeholder="Password"> <br>
+            <div align="center">
+                <button class="submit">
+                    <span class="enter">Войти</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+<footer>
+</footer>
 </body>
 </html>

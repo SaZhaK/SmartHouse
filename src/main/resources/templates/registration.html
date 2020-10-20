@@ -1,30 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
+    <title>Registration page</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header>
+</header>
+<main>
+    <div class="main-card">
+        <form method="POST" modelAttribute="userForm" th:object="${user}">
 
-<div>
-    <form method="POST" modelAttribute="userForm" th:object="${user}">
-        <h2>Регистрация</h2>
-        <div>
-            <input type="text" th:field="${user.username}" placeholder="Username" autofocus="true"/>
-        </div>
-        <div>
-            <input type="password" th:field="${user.password}" placeholder="Password"/>
-        </div>
-        <div>
-            <input type="password" th:field="${user.passwordConfirm}" placeholder="Confirm your password"/>
-        </div>
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-    <br>
-    <a href="/">Главная</a>
-    <br>
-    <a href="/login">Войти</a>
-</div>
+            <p class="heading">Логин:</p>
+            <input class="input-field" type="email" th:field="${user.username}" placeholder="Username" autofocus="true">
+
+            <p class="heading">Пароль:</p>
+            <input class="input-field" type="password" th:field="${user.password}" placeholder="Password"> <br>
+
+            <p class="heading">Повторите пароль:</p>
+            <input class="input-field" type="password" th:field="${user.passwordConfirm}" placeholder="Confirm your password"> <br>
+            <div align="center">
+                <button class="submit">
+                    <span class="enter">Зарегистрироваться</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+</main>
+<footer>
+</footer>
 </body>
+</html>

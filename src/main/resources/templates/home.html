@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
 </head>
 <body>
 
-<div id="root"></div>
 здесь будет умный дом
 
-<div sec:authorize="isAuthenticated()">
-    some text for everyone
-</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-    This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_USER')">
-    This content is only shown to users.
-</div>
+<button id="startButton"> Start </button>
+<button id="stopButton"> Stop </button>
 
 <br>
 <a href="/login">Войти</a>
 <br>
 <a href="/registration">Регистрация</a>
 
+<ul id="messageArea">
+</ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/js/home.js}"></script>
 </body>
 </html>
