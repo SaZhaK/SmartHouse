@@ -1,37 +1,73 @@
-var ws;
+var buttonWS;
 
-function connect() {
-	ws = new WebSocket('ws://localhost:8080/ws');
-	ws.onmessage = function(data){
-		onReceive(data.data);
+function connectButton() {
+	buttonWS = new WebSocket('ws://localhost:8080/button');
+	buttonWS.onmessage = function(data){
+		onReceiveButton(data.data);
 	}
 }
 
-function disconnect() {
-    if (ws != null) {
-        ws.close();
+function disconnectButton() {
+    if (buttonWS != null) {
+        buttonWS.close();
     }
     console.log("Disconnected");
 }
 
-function startReceiving() {
-    ws.send("start");
+function startReceivingButton() {
+    buttonWS.send("start");
 }
 
-function stopReceiving() {
-    ws.send("stop");
+function stopReceivingButton() {
+    buttonWS.send("stop");
 }
 
-function onReceive(message) {
+function onReceiveButton(message) {
+    console.log(" " + message + "");
+}
+
+var buttonStart = document.getElementById("buttonStart");
+buttonStart.onclick = startReceivingButton;
+
+var buttonStop = document.getElementById("buttonStop");
+buttonStop.onclick = stopReceivingButton;
+
+
+var joyStickWS;
+
+function connectJoyStick() {
+	joyStickWS = new WebSocket('ws://localhost:8080/joystick');
+	joyStickWS.onmessage = function(data){
+		onReceiveJoyStick(data.data);
+	}
+}
+
+function disconnectJoyStick() {
+    if (joyStickWS != null) {
+        joyStickWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function startReceivingJoyStick() {
+    joyStickWS.send("start");
+}
+
+function stopReceivingJoyStick() {
+    joyStickWS.send("stop");
+}
+
+function onReceiveJoyStick(message) {
     console.log(" " + message + "");
 }
 
 window.onload = function() {
-  connect();
+    connectButton();
+    connectJoyStick();
 };
 
-var startButton = document.getElementById("startButton");
-startButton.onclick = startReceiving;
+var joystickStart = document.getElementById("joystickStart");
+joystickStart.onclick = startReceivingJoyStick;
 
-var stopButton = document.getElementById("stopButton");
-stopButton.onclick = stopReceiving;
+var joystickStop = document.getElementById("joystickStop");
+joystickStop.onclick = stopReceivingJoyStick;

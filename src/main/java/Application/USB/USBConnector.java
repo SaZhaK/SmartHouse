@@ -11,14 +11,17 @@ import org.springframework.web.socket.WebSocketSession;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.StringTokenizer;
 
 @Component
 public class USBConnector {
     private static final String PORT_NUMBER = "/dev/ttyUSB0";
     private static SerialPort serialPort;
 
-    private static boolean send = false;
-    public static Deque<String> data = new ArrayDeque<>();
+    private static boolean sendButton = false;
+    private static boolean sendJoyStick = false;
+    public static Deque<String> buttonData = new ArrayDeque<>();
+    public static Deque<String> joyStickData = new ArrayDeque<>();
 
     static {
         serialPort = new SerialPort(PORT_NUMBER);
@@ -36,14 +39,12 @@ public class USBConnector {
         }
     }
 
-    public static void startSending(WebSocketSession session) {
-        USBConnector.send = true;
+    public static void startSendingButtonData(WebSocketSession session) {
+        USBConnector.sendButton = true;
         Thread sendThread = new Thread(() -> {
-            while (send) {
-                if (!data.isEmpty()) {
-                    System.out.println(data.toString());
-
-                    String dataToSend = data.removeFirst();
+            while (sendButton) {
+                if (!buttonData.isEmpty()) {
+                    String dataToSend = buttonData.removeFirst();
                     try {
                         session.sendMessage(new TextMessage(dataToSend));
                         Thread.sleep(1000);
@@ -56,8 +57,30 @@ public class USBConnector {
         sendThread.start();
     }
 
-    public static void stopSending() {
-        USBConnector.send = false;
+    public static void stopSendingButtonData() {
+        USBConnector.sendButton = false;
+    }
+
+    public static void startSendingJoyStickData(WebSocketSession session) {
+        USBConnector.sendJoyStick = true;
+        Thread sendThread = new Thread(() -> {
+            while (sendJoyStick) {
+                if (!joyStickData.isEmpty()) {
+                    String dataToSend = joyStickData.removeFirst();
+                    try {
+                        session.sendMessage(new TextMessage(dataToSend));
+                        Thread.sleep(1000);
+                    } catch (IOException | InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+        sendThread.start();
+    }
+
+    public static void stopSendingJoyStickData() {
+        USBConnector.sendJoyStick = false;
     }
 
     private static class PortReader implements SerialPortEventListener {
@@ -65,7 +88,13 @@ public class USBConnector {
             if (event.isRXCHAR() && event.getEventValue() > 0) {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
-                    data.addLast(receivedData);
+                    StringTokenizer tokenizer = new StringTokenizer(receivedData, " ", false);
+                    String joyStickX = tokenizer.nextToken();
+                    String joyStickY = tokenizer.nextToken();
+                    String button = tokenizer.nextToken();
+
+                    buttonData.addLast(button);
+                    joyStickData.addLast(joyStickX + " " + joyStickY);
                 } catch (SerialPortException ex) {
                     ex.printStackTrace();
                 }
