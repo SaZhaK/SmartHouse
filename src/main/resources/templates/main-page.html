@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Smart House</title>
+    <link rel="stylesheet" href="joystick.css">
+    <link rel="stylesheet" href="main-page.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="joystick.js"></script>
+    <script src="home.js"></script>
+
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <h1 class="heading logo">SmartHouse</h1>
+        </div>
+        <div style="display: flex">
+            <form action="login.html">
+                <button class="button">
+                    <span class="enter">Войти</span>
+                    </button>
+            </form>
+            
+            <form action="registration.html">
+                <button class="button">
+                    <span class="enter">Зарегистрироваться</span>
+                </button>
+            </form>
+            
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="main-card">
+            <h1 class="heading">Цвета</h1>
+            <div class="color-buttons">
+                <button class= "red-button" onclick="this.className = (this.className == 'red-button' ? 'red-button-active' : 'red-button')"></button>
+                <button class= "green-button" onclick="this.className = (this.className == 'green-button' ? 'green-button-active' : 'green-button')"></button>
+                <button class= "blue-button" onclick="this.className = (this.className == 'blue-button' ? 'blue-button-active' : 'blue-button')"></button>
+            </div>
+        </div>
+        <div class="main-card voice-button-card">
+            <div class="voice-button-card-part">
+                <h1 class="heading">Звук</h1>
+                <button class="voice-button" onclick="this.className = (this.className == 'voice-button' ? 'voice-button-active' : 'voice-button')"></button>
+            </div>
+            <div class="voice-button-card-part">
+                <h1 class="heading">Кнопка</h1>
+                <button class="button-light" onclick="this.className = ((valueButton==0) ? 'button-light-active' : 'button-light' )"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="joistik" class="joistik">
+        <div class="joistmamipulator"></div>
+    
+    </div>
+    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
+    <input type="text" value="0" id="oy" class="joystick-input"  />
+
+</body>
+</html>

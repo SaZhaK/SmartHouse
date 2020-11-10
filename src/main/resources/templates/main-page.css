@@ -1,0 +1,177 @@
+body {
+    margin: 0; 
+   background : #DCDCDC;
+}
+
+
+.main-card {
+   background-color: #FFF5EE;
+   border-radius: 32px;
+   padding: 16px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   width: fit-content;
+   margin: 50px auto;
+}
+
+.heading {
+   color: #696969;
+   font-size: 25px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   font-weight: normal;
+   text-align: center;
+}
+
+.color-buttons {
+   display: flex;
+}
+
+.red-button {
+   background: red;
+   opacity: .4;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+}
+
+.red-button-active {
+   background: red;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+
+}
+
+.green-button {
+   background: green;
+   opacity: .4;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+}
+
+.green-button-active {
+   background: green;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+
+}
+
+.blue-button {
+   background: blue;
+   opacity: .4;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+}
+
+.blue-button-active {
+   background: blue;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: 10px;
+   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.voice-button {
+   background: grey;
+   opacity: .4;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: inherit;
+}
+
+.voice-button-active {
+   background: grey;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: inherit;
+   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.button-light {
+   background: grey;
+   opacity: .4;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: inherit;
+}
+
+.button-light-active {
+   background: rgb(255, 230, 0);
+   opacity: .8;
+   padding: 20px;
+   border-radius: 100%;
+   outline: none;
+   border: none;
+   margin: inherit;
+   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.button {
+   border: none;
+   border-radius: 16px;
+   padding: 12px;
+   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+   margin: 10px 5px;
+}
+
+button:focus {
+   outline: none;
+}
+
+button:active {
+   box-shadow: 0 0 20px #C0C0C0;
+}
+
+.enter {
+   color: #696969;
+   font-size: 16px;
+}
+
+.header {
+   display: flex;
+   justify-content: space-around;
+   background-color: #949191;
+   box-shadow: 0 0 10px rgba(0,0,0,0.5);
+   padding: 15px;
+}
+
+.logo {
+   color: #FFF5EE !important;
+   font-weight: 500;
+}
+
+.page-content {
+   display: flex;
+   justify-content: space-around;
+}
+
+.voice-button-card {
+   display: flex;
+}
+
+.voice-button-card-part {
+   margin: 0px 20px;
+}
+

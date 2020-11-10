@@ -1,0 +1,34 @@
+.joistik {
+    width:200px;
+    height:200px; 
+    background: #FFF5EE; 
+    border-radius: 32px; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+    position:relative; 
+    margin-left:300px
+}
+
+.joistmamipulator {
+    width:60px; 
+    height:60px; 
+    position:absolute; 
+    border-radius:10px; 
+    background:gray; 
+    cursor:pointer;
+}
+
+.joystick-input {
+    margin-left: 300px;
+    background: rgb(206, 205, 205);
+    border: 1px gray solid;
+    border-radius: 30px;
+    padding: 8px;
+}
+
+.joystick-input:active {
+    outline: none;
+}
+
+.joystick-input:focus {
+    outline: none;
+}
