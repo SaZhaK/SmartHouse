@@ -17,6 +17,16 @@
     cursor:pointer;
 }
 
+.new-joistmamipulator {
+    width:60px; 
+    height:60px; 
+    position:absolute; 
+    border-radius:10px; 
+    background:gray; 
+    cursor:pointer;
+}
+
+
 .joystick-input {
     margin-left: 300px;
     background: rgb(206, 205, 205);

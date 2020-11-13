@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="main-page.css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="joystick.js"></script>
+    <!-- <script src="joystick.js"></script> -->
+    <script src="newjoystick.js"></script>
     <script src="home.js"></script>
-
+    
 </head>
-
 <body>
+    
     <div class="header">
         <div>
             <h1 class="heading logo">SmartHouse</h1>
@@ -49,17 +50,39 @@
             </div>
             <div class="voice-button-card-part">
                 <h1 class="heading">Кнопка</h1>
-                <button class="button-light" onclick="this.className = ((valueButton==0) ? 'button-light-active' : 'button-light' )"></button>
+                <button id="button-light" class="button-light"></button>
             </div>
         </div>
     </div>
 
+    <script>
+        if (valueButton == 0) {
+            let elem = document.getElementById('button-light');
+            elem.className = "button-light-active";
+        }
+        if (valueButton == 1) {
+            let elem = document.getElementById('button-light');
+            elem.className = "button-light";
+        }
+    </script>
+    
+    <!-- OLD JOISTICK -->
+    <!-- 
     <div id="joistik" class="joistik">
         <div class="joistmamipulator"></div>
     
     </div>
     <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
     <input type="text" value="0" id="oy" class="joystick-input"  />
+    -->
+
+    <div id="new-joistik" class="joistik">
+        <div class="new-joistmamipulator"></div>
+    
+    </div>
+    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
+    <input type="text" value="0" id="oy" class="joystick-input"  />
+    
 
 </body>
 </html>
