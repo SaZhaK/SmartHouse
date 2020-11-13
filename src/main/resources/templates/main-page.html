@@ -1,19 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Smart House</title>
-    <link rel="stylesheet" href="joystick.css">
-    <link rel="stylesheet" href="main-page.css">
+    <link rel="stylesheet" th:href="@{/css/joystick.css}">
+    <link rel="stylesheet" th:href="@{/css/main-page.css}">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- <script src="joystick.js"></script> -->
-    <script src="newjoystick.js"></script>
-    <script src="home.js"></script>
+    <script th:src="@{/js/newjoystick.js}"></script>
+    <script th:src="@{/js/home.js}" defer></script>
     
 </head>
 <body>
-    
+
     <div class="header">
         <div>
             <h1 class="heading logo">SmartHouse</h1>
@@ -38,15 +39,15 @@
         <div class="main-card">
             <h1 class="heading">Цвета</h1>
             <div class="color-buttons">
-                <button class= "red-button" onclick="this.className = (this.className == 'red-button' ? 'red-button-active' : 'red-button')"></button>
-                <button class= "green-button" onclick="this.className = (this.className == 'green-button' ? 'green-button-active' : 'green-button')"></button>
-                <button class= "blue-button" onclick="this.className = (this.className == 'blue-button' ? 'blue-button-active' : 'blue-button')"></button>
+                <button id="buttonRed" class= "red-button" onclick="this.className = (this.className == 'red-button' ? 'red-button-active' : 'red-button')"></button>
+                <button id="buttonGreen" class= "green-button" onclick="this.className = (this.className == 'green-button' ? 'green-button-active' : 'green-button')"></button>
+                <button id="buttonBlue" class= "blue-button" onclick="this.className = (this.className == 'blue-button' ? 'blue-button-active' : 'blue-button')"></button>
             </div>
         </div>
         <div class="main-card voice-button-card">
             <div class="voice-button-card-part">
                 <h1 class="heading">Звук</h1>
-                <button class="voice-button" onclick="this.className = (this.className == 'voice-button' ? 'voice-button-active' : 'voice-button')"></button>
+                <button id="buttonSound" class="voice-button" onclick="this.className = (this.className == 'voice-button' ? 'voice-button-active' : 'voice-button')"></button>
             </div>
             <div class="voice-button-card-part">
                 <h1 class="heading">Кнопка</h1>
@@ -54,17 +55,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        if (valueButton == 0) {
-            let elem = document.getElementById('button-light');
-            elem.className = "button-light-active";
-        }
-        if (valueButton == 1) {
-            let elem = document.getElementById('button-light');
-            elem.className = "button-light";
-        }
-    </script>
     
     <!-- OLD JOISTICK -->
     <!-- 
@@ -78,11 +68,21 @@
 
     <div id="new-joistik" class="joistik">
         <div class="new-joistmamipulator"></div>
-    
     </div>
-    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
-    <input type="text" value="0" id="oy" class="joystick-input"  />
-    
+<!--    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />-->
+<!--    <input type="text" value="0" id="oy" class="joystick-input"  />-->
+
+
+    <br>
+    <button id="buttonStart"> Button Start </button>
+    <br>
+    <button id="buttonStop"> Button Stop </button>
+    <br>
+
+    <button id="joystickStart"> JoyStick Start </button>
+    <br>
+    <button id="joystickStop"> JoyStick Stop </button>
+    <br>
 
 </body>
 </html>

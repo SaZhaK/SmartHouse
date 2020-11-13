@@ -23,7 +23,17 @@ function stopReceivingButton() {
 }
 
 function onReceiveButton(message) {
-    console.log(" " + message + "");
+    console.log(" " + message + " ");
+    var valueButton = message;
+
+    if (valueButton == 0) {
+        let elem = document.getElementById('button-light');
+        elem.className = "button-light-active";
+    }
+    if (valueButton == 1) {
+        let elem = document.getElementById('button-light');
+        elem.className = "button-light";
+    }
 }
 
 var buttonStart = document.getElementById("buttonStart");
@@ -32,7 +42,19 @@ buttonStart.onclick = startReceivingButton;
 var buttonStop = document.getElementById("buttonStop");
 buttonStop.onclick = stopReceivingButton;
 
-var valueButton = buttonWS.onmessage();
+
+
+var jswidth=0;
+var jsheight=0;
+var mnwidth=0;
+var mnheight=0;
+var cx=0;
+var cy=0;
+
+
+function inposition() {
+    $("#new-joistik .new-joistmamipulator").animate({left: cx+"px", top: cy+"px"});
+}
 
 var joyStickWS;
 
@@ -59,13 +81,42 @@ function stopReceivingJoyStick() {
 }
 
 function onReceiveJoyStick(message) {
-    console.log(" " + message + "");
-}
+    jswidth=$("#new-joistik").width();
+    jsheight=$("#new-joistik").height();
+    mnwidth=$("#new-joistik .new-joistmamipulator").width();
+    mnheight=$("#new-joistik .new-joistmamipulator").height();
 
-window.onload = function() {
-    connectButton();
-    connectJoyStick();
-};
+    if (message == 11) {
+        cx = 0;
+        cy = 0;
+    } else if (message == 12) {
+        cx = 60;
+        cy = 0;
+    }  else if (message == 13) {
+        cx = 140;
+        cy = 0;
+    } else if (message == 21) {
+        cx = 0;
+        cy = 60;
+    } else if (message == 22) {
+        cx = 60;
+        cy = 60;
+    } else if (message == 23) {
+        cx = 140;
+        cy = 60;
+    }  else if (message == 31) {
+        cx = 0;
+        cy = 140;
+    } else if (message == 32) {
+        cx = 60;
+        cy = 140;
+    } else if (message == 33) {
+        cx = 140;
+        cy = 140;
+    }
+
+    inposition();
+}
 
 var joystickStart = document.getElementById("joystickStart");
 joystickStart.onclick = startReceivingJoyStick;
@@ -73,4 +124,134 @@ joystickStart.onclick = startReceivingJoyStick;
 var joystickStop = document.getElementById("joystickStop");
 joystickStop.onclick = stopReceivingJoyStick;
 
-var valueJoyStick = JoyStickWS.onmessage();
+
+
+var soundWS;
+
+function connectSound() {
+	soundWS = new WebSocket('ws://localhost:8080/sound');
+	soundWS.onmessage = function(data){
+		onReceiveSound(data.data);
+	}
+}
+
+function disconnectSound() {
+    if (soundWS != null) {
+        soundWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function sound() {
+    soundWS.send("sound");
+}
+
+function onReceiveSound(message) {
+    console.log(message);
+}
+
+var buttonSound = document.getElementById("buttonSound");
+buttonSound.onclick = sound;
+
+window.onload = function() {
+    connectButton();
+    connectJoyStick();
+    connectSound();
+};
+
+
+
+var redWS;
+
+function connectRed() {
+	redWS = new WebSocket('ws://localhost:8080/red');
+	redWS.onmessage = function(data){
+		onReceiveRed(data.data);
+	}
+}
+
+function disconnectRed() {
+    if (redWS != null) {
+        redWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function red() {
+    redWS.send("red");
+}
+
+function onReceiveRed(message) {
+    console.log(message);
+}
+
+var buttonRed = document.getElementById("buttonRed");
+buttonRed.onclick = red;
+
+
+
+var greenWS;
+
+function connectGreen() {
+	greenWS = new WebSocket('ws://localhost:8080/green');
+	greenWS.onmessage = function(data){
+		onReceiveGreen(data.data);
+	}
+}
+
+function disconnectSound() {
+    if (greenWS != null) {
+        greenWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function green() {
+    greenWS.send("green");
+}
+
+function onReceiveGreen(message) {
+    console.log(message);
+}
+
+var buttonGreen = document.getElementById("buttonGreen");
+buttonGreen.onclick = green;
+
+
+
+var blueWS;
+
+function connectBlue() {
+	blueWS = new WebSocket('ws://localhost:8080/blue');
+	blueWS.onmessage = function(data){
+		onReceiveBlue(data.data);
+	}
+}
+
+function disconnectBlue() {
+    if (blueWS != null) {
+        blueWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function blue() {
+    blueWS.send("blue");
+}
+
+function onReceiveBlue(message) {
+    console.log(message);
+}
+
+var buttonBlue = document.getElementById("buttonBlue");
+buttonBlue.onclick = blue;
+
+window.onload = function() {
+    connectButton();
+    connectJoyStick();
+
+    connectSound();
+    connectRed();
+    connectGreen();
+    connectBlue();
+};

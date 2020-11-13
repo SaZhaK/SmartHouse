@@ -15,10 +15,11 @@ public class SocketButtonDataHandler extends TextWebSocketHandler {
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
+        USBConnector connector = new USBConnector();
         if (message.getPayload().equals("start")) {
-            USBConnector.startSendingButtonData(session);
+            connector.startSendingButtonData(session);
         } else if (message.getPayload().equals("stop")) {
-            USBConnector.stopSendingButtonData();
+            connector.stopSendingButtonData();
         }
     }
 

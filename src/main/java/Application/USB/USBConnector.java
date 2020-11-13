@@ -9,9 +9,9 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Queue;
 import java.util.StringTokenizer;
+import java.util.concurrent.ArrayBlockingQueue;
 
 @Component
 public class USBConnector {
@@ -20,8 +20,9 @@ public class USBConnector {
 
     private static boolean sendButton = false;
     private static boolean sendJoyStick = false;
-    public static Deque<String> buttonData = new ArrayDeque<>();
-    public static Deque<String> joyStickData = new ArrayDeque<>();
+    private static boolean sound = false;
+    public static Queue<String> buttonData = new ArrayBlockingQueue(21);
+    public static Queue<String> joyStickData = new ArrayBlockingQueue<>(21);
 
     static {
         serialPort = new SerialPort(PORT_NUMBER);
@@ -39,48 +40,89 @@ public class USBConnector {
         }
     }
 
-    public static void startSendingButtonData(WebSocketSession session) {
+    public void startSendingButtonData(WebSocketSession session) {
         USBConnector.sendButton = true;
         Thread sendThread = new Thread(() -> {
             while (sendButton) {
-                if (!buttonData.isEmpty()) {
-                    String dataToSend = buttonData.removeFirst();
-                    try {
+                try {
+                    if (!buttonData.isEmpty()) {
+                        String dataToSend = buttonData.remove();
                         session.sendMessage(new TextMessage(dataToSend));
-                        Thread.sleep(1000);
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
+                        Thread.sleep(100);
+                    } else {
+                        Thread.sleep(400);
                     }
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
         sendThread.start();
     }
 
-    public static void stopSendingButtonData() {
+    public void stopSendingButtonData() {
         USBConnector.sendButton = false;
     }
 
-    public static void startSendingJoyStickData(WebSocketSession session) {
+    public void startSendingJoyStickData(WebSocketSession session) {
         USBConnector.sendJoyStick = true;
         Thread sendThread = new Thread(() -> {
             while (sendJoyStick) {
-                if (!joyStickData.isEmpty()) {
-                    String dataToSend = joyStickData.removeFirst();
-                    try {
+                try {
+                    if (!joyStickData.isEmpty()) {
+                        String dataToSend = joyStickData.remove();
                         session.sendMessage(new TextMessage(dataToSend));
-                        Thread.sleep(1000);
-                    } catch (IOException | InterruptedException e) {
-                        e.printStackTrace();
+                        Thread.sleep(100);
+                    } else {
+                        Thread.sleep(400);
                     }
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
         sendThread.start();
     }
 
-    public static void stopSendingJoyStickData() {
+    public void stopSendingJoyStickData() {
         USBConnector.sendJoyStick = false;
+    }
+
+    public void sound() {
+        USBConnector.sound = !USBConnector.sound;
+        try {
+            if (USBConnector.sound) {
+                serialPort.writeString("sound");
+            } else {
+                serialPort.writeString("stop");
+            }
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void red() {
+        try {
+            serialPort.writeString("red");
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void green() {
+        try {
+            serialPort.writeString("green");
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void blue() {
+        try {
+            serialPort.writeString("blue");
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
     }
 
     private static class PortReader implements SerialPortEventListener {
@@ -93,9 +135,44 @@ public class USBConnector {
                     String joyStickY = tokenizer.nextToken();
                     String button = tokenizer.nextToken();
 
-                    buttonData.addLast(button);
-                    joyStickData.addLast(joyStickX + " " + joyStickY);
-                } catch (SerialPortException ex) {
+                    int code = 0;
+                    int x_position = Integer.valueOf(joyStickX);
+                    int y_position = Integer.valueOf(joyStickY);
+
+                    if ((x_position > 190 && x_position < 280) && (y_position > 190 && y_position < 280)) {
+                        code = 11;
+                    } else if ((x_position > 0 && x_position < 30) && (y_position > 0 && y_position < 30)) {
+                        code = 21;
+                    } else if ((x_position > 30 && x_position < 190) && (y_position > 30 && y_position < 190)) {
+                        code = 31;
+                    } else if ((x_position > 330 && x_position < 400) && (y_position > 330 && y_position < 400)) {
+                        code = 12;
+                    } else if ((x_position > 280 && x_position < 330) && (y_position > 280 && y_position < 330)) {
+                        code = 22;
+                    } else if ((x_position > 500 && x_position < 650) && (y_position > 500 && y_position < 650)) {
+                        code = 32;
+                    } else if ((x_position > 400 && x_position < 500) && (y_position > 400 && y_position < 500)) {
+                        code = 13;
+                    } else if ((x_position > 650 && x_position < 700) && (y_position > 650 && y_position < 700)) {
+                        code = 23;
+                    } else if ((x_position > 700 && x_position < 1024) && (y_position > 700 && y_position < 1024)) {
+                        code = 33;
+                    } else {
+                        code = 22;
+                    }
+
+                    if (joyStickData.size() > 10) {
+                        Thread.sleep(300);
+                    } else {
+                        joyStickData.add(String.valueOf(code));
+                    }
+
+                    if (buttonData.size() > 10) {
+                        Thread.sleep(300);
+                    } else {
+                        buttonData.add(button);
+                    }
+                } catch (SerialPortException | InterruptedException ex) {
                     ex.printStackTrace();
                 }
             }

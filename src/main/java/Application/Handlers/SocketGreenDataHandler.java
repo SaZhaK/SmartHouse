@@ -10,16 +10,14 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Component
-public class SocketJoyStickDataHandler extends TextWebSocketHandler {
+public class SocketGreenDataHandler extends TextWebSocketHandler {
     List sessions = new CopyOnWriteArrayList<>();
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         USBConnector connector = new USBConnector();
-        if (message.getPayload().equals("start")) {
-            connector.startSendingJoyStickData(session);
-        } else if (message.getPayload().equals("stop")) {
-            connector.stopSendingJoyStickData();
+        if (message.getPayload().equals("green")) {
+            connector.green();
         }
     }
 

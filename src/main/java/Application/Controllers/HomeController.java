@@ -10,7 +10,7 @@ public class HomeController {
     public String getHome() {
         //USBConnector usbConnector = new USBConnector();
 
-        return "home";
+        return "main-page";
     }
 
 //    @MessageMapping("/ws")
