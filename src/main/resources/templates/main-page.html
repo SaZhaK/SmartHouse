@@ -4,13 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Smart House</title>
-    <link rel="stylesheet" th:href="@{/css/joystick.css}">
-    <link rel="stylesheet" th:href="@{/css/main-page.css}">
+    <link rel="stylesheet" href="../static/css/joystick.css">
+    <link rel="stylesheet" href="../static/css/main-page.css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <!-- <script src="joystick.js"></script> -->
-    <script th:src="@{/js/newjoystick.js}"></script>
-    <script th:src="@{/js/home.js}" defer></script>
+    <script src="../static/js/newjoystick.js"></script>
+    <script src="../static/js/home.js" defer></script>
     
 </head>
 <body>
@@ -39,9 +39,9 @@
         <div class="main-card">
             <h1 class="heading">Цвета</h1>
             <div class="color-buttons">
-                <button id="buttonRed" class= "red-button" onclick="this.className = (this.className == 'red-button' ? 'red-button-active' : 'red-button')"></button>
-                <button id="buttonGreen" class= "green-button" onclick="this.className = (this.className == 'green-button' ? 'green-button-active' : 'green-button')"></button>
-                <button id="buttonBlue" class= "blue-button" onclick="this.className = (this.className == 'blue-button' ? 'blue-button-active' : 'blue-button')"></button>
+                <button id="buttonRed" class= "red-button"></button>
+                <button id="buttonGreen" class= "green-button"></button>
+                <button id="buttonBlue" class= "blue-button"></button>
             </div>
         </div>
         <div class="main-card voice-button-card">

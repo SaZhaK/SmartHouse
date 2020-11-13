@@ -150,8 +150,13 @@ function onReceiveSound(message) {
     console.log(message);
 }
 
+function buttonSoundOnclick() {
+    sound;
+    buttonSound.className = (buttonSound.className == 'voice-button' ? 'voice-button-active' : 'voice-button');
+}
+
 var buttonSound = document.getElementById("buttonSound");
-buttonSound.onclick = sound;
+buttonSound.onclick = buttonSoundOnclick; 
 
 window.onload = function() {
     connectButton();
@@ -185,8 +190,13 @@ function onReceiveRed(message) {
     console.log(message);
 }
 
+function buttonRedOnclick() {
+    red;
+    buttonRed.className = (buttonRed.className == 'red-button' ? 'red-button-active' : 'red-button');
+}
+
 var buttonRed = document.getElementById("buttonRed");
-buttonRed.onclick = red;
+buttonRed.onclick = buttonRedOnclick;
 
 
 
@@ -214,8 +224,13 @@ function onReceiveGreen(message) {
     console.log(message);
 }
 
+function buttonGreenOnclick() {
+    green;
+    buttonGreen.className = (buttonGreen.className == 'green-button' ? 'green-button-active' : 'green-button');
+}
+
 var buttonGreen = document.getElementById("buttonGreen");
-buttonGreen.onclick = green;
+buttonGreen.onclick = buttonGreenOnclick;
 
 
 
@@ -243,8 +258,13 @@ function onReceiveBlue(message) {
     console.log(message);
 }
 
+function buttonBlueOnclick() {
+    blue;
+    buttonBlue.className = (buttonBlue.className == 'blue-button' ? 'blue-button-active' : 'blue-button');
+}
+
 var buttonBlue = document.getElementById("buttonBlue");
-buttonBlue.onclick = blue;
+buttonBlue.onclick = buttonBlueOnclick;
 
 window.onload = function() {
     connectButton();
