@@ -42,6 +42,28 @@ function drawLine() {
     ctx2.stroke();   
 }
 
+
+var angleWS;
+
+function connectAngle() {
+	angleWS = new WebSocket('ws://localhost:8080/angle');
+	angleWS.onmessage = function(data){
+		onReceiveAngle(data.data);
+	}
+}
+
+function disconnectAngle() {
+    if (angleWS != null) {
+        angleWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function onReceiveAngle(message) {
+    console.log(message);
+}
+
+
 //ВЫСЧИТЫВАЕМ УГОЛ (В ГРАДУСАХ)
 var angle=0;
 function findAngle() {
@@ -71,13 +93,12 @@ ball.onmousedown = function(e) {
     liney=e.pageY-350;
     drawLine();
     findAngle();
-    console.log(angle);
   }
 
   ball.onmouseup = function() {
     document.onmousemove = null;
     ball.onmouseup = null;
+
+    angleWS.send("angle " + angle)
   }
 }
-
-

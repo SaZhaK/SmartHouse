@@ -125,6 +125,15 @@ public class USBConnector {
         }
     }
 
+    public void angle(String angle) {
+        int roundedAngle = (int) Math.round(Double.parseDouble(angle));
+        try {
+            serialPort.writeString(String.valueOf(roundedAngle));
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static class PortReader implements SerialPortEventListener {
         public void serialEvent(SerialPortEvent event) {
             if (event.isRXCHAR() && event.getEventValue() > 0) {

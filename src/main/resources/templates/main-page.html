@@ -4,19 +4,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Smart House</title>
-    <link rel="stylesheet" href="../static/css/joystick.css">
-    <link rel="stylesheet" href="../static/css/main-page.css">
+    <link rel="stylesheet" th:href="@{/css/joystick.css}">
+    <link rel="stylesheet" th:href="@{/css/main-page.css}">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <!-- <script src="joystick.js"></script> -->
-    <script src="../static/js/newjoystick.js"></script>
-    <script src="../static/js/home.js" defer></script>
-    <script src="../static/js/canvas.js" defer></script>
+    <script th:src="@{/js/newjoystick.js}"></script>
+    <script th:src="@{/js/home.js}" defer></script>
+    <script th:src="@{/js/canvas.js}" defer></script>
     
 </head>
 <body>
-
-  
 
     <div class="header">
         <div>
@@ -93,8 +90,8 @@
     <br>
     <button id="joystickStop"> JoyStick Stop </button>
     <br>
-    
-   
-    
+
+
+
 </body>
 </html>

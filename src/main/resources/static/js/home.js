@@ -151,7 +151,7 @@ function onReceiveSound(message) {
 }
 
 function buttonSoundOnclick() {
-    sound;
+    sound();
     buttonSound.className = (buttonSound.className == 'voice-button' ? 'voice-button-active' : 'voice-button');
 }
 
@@ -190,8 +190,13 @@ function onReceiveRed(message) {
     console.log(message);
 }
 
+function sleep(ms) {
+    ms += new Date().getTime();
+    while (new Date() < ms){}
+}
+
 function buttonRedOnclick() {
-    red;
+    red();
     buttonRed.className = (buttonRed.className == 'red-button' ? 'red-button-active' : 'red-button');
 }
 
@@ -225,7 +230,7 @@ function onReceiveGreen(message) {
 }
 
 function buttonGreenOnclick() {
-    green;
+    green();
     buttonGreen.className = (buttonGreen.className == 'green-button' ? 'green-button-active' : 'green-button');
 }
 
@@ -259,7 +264,7 @@ function onReceiveBlue(message) {
 }
 
 function buttonBlueOnclick() {
-    blue;
+    blue();
     buttonBlue.className = (buttonBlue.className == 'blue-button' ? 'blue-button-active' : 'blue-button');
 }
 
@@ -274,4 +279,6 @@ window.onload = function() {
     connectRed();
     connectGreen();
     connectBlue();
+
+    connectAngle();
 };
