@@ -4,13 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Smart House</title>
-    <link rel="stylesheet" th:href="@{/css/joystick.css}">
-    <link rel="stylesheet" th:href="@{/css/main-page.css}">
+    <link rel="stylesheet" href="../static/css/joystick.css">
+    <link rel="stylesheet" href="../static/css/main-page.css">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script th:src="@{/js/newjoystick.js}"></script>
-    <script th:src="@{/js/home.js}" defer></script>
-    <script th:src="@{/js/canvas.js}" defer></script>
+    <script src="../static/js/newjoystick.js"></script>
+    <script src="../static/js/home.js" defer></script>
+    <script src="../static/js/canvas.js" defer></script>
     
 </head>
 <body>
@@ -37,7 +37,7 @@
 
     <div class="page-content">
         <div class="main-card">
-            <h1 class="heading">Цвета</h1>
+            <h1 class="heading">Светодиоды</h1>
             <div class="color-buttons">
                 <button id="buttonRed" class= "red-button"></button>
                 <button id="buttonGreen" class= "green-button"></button>
@@ -71,26 +71,25 @@
         </div>
         <div style="margin-left: 10%">
             <canvas id="canvas" width="300" height="300" style="position: absolute; "></canvas>
-            <canvas id="ball" width="100" height="300" style="position: relative;"></canvas>
+            <canvas id="ball" width="100" height="300" style="position: relative; z-index: 1000"></canvas>
             <canvas id="line" width="300" height="300" style=" position: relative;"></canvas>
+            <canvas id="first-line" width="300" height="300" style="position: absolute; margin-left: -24%;"></canvas>
+
+        </div>
+        <div class="main-card" style="margin: 0 1%; height: fit-content; position: absolute; margin-left: 65%;">
+            <div style="display: flex; justify-content: space-around;"> 
+                <button id="buttonStart" class="button"> <span class="enter">Button Start</span></button>
+                <button id="buttonStop" class="button"> <span class="enter">Button Stop</span></button>
+            </div>
+            <div style="display: flex; justify-content: space-around;"> 
+                <button id="joystickStart" class="button"> <span class="enter">JoyStick Start</span></button>
+                <button id="joystickStop" class="button"> <span class="enter">JoyStick Stop</span> </button>
+            </div>
         </div>
     </div>
 
 <!--    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />-->
 <!--    <input type="text" value="0" id="oy" class="joystick-input"  />-->
-
-
-    <br>
-    <button id="buttonStart"> Button Start </button>
-    <br>
-    <button id="buttonStop"> Button Stop </button>
-    <br>
-
-    <button id="joystickStart"> JoyStick Start </button>
-    <br>
-    <button id="joystickStop"> JoyStick Stop </button>
-    <br>
-
 
 
 </body>

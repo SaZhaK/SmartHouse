@@ -9,6 +9,17 @@ ctx.shadowColor = 'rgba(0,0,0,0.5)';
 ctx.shadowBlur = 15;
 ctx.stroke();
 ctx.fill();
+ctx.closePath();
+
+//ПЕРВАЯ ЛИНИЯ
+var c = document.getElementById("first-line");
+var ctx3 = c.getContext("2d");
+ctx3.beginPath();
+ctx3.moveTo(50, 150);
+ctx3.lineTo(150,150);
+ctx3.closePath();
+ctx3.strokeStyle = '#696969';
+ctx3.stroke();  
 
 var c = document.getElementById("ball");
 var ctx = c.getContext("2d");
@@ -16,11 +27,12 @@ var ctx = c.getContext("2d");
 var c = document.getElementById("line");
 var ctx2 = c.getContext("2d");
 
-var linex;
-var liney;
+var linex=250;
+var liney=150;
 
 //ШАР
 function drawBall() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.arc(50, 150, 15, 0, Math.PI*2);
     ctx.fillStyle = "#FFF5EE";
@@ -76,6 +88,7 @@ var ball = document.getElementById('ball');
 
 //ОТСЛЕЖИВАНИЕ ПЕРЕМЕЩЕНИЯ ШАРА
 ball.onmousedown = function(e) { 
+  ctx3.clearRect(0, 0, canvas.width, canvas.height);
 
   ball.style.position = 'absolute';
   moveAt(e);
@@ -83,16 +96,29 @@ ball.onmousedown = function(e) {
   ball.style.zIndex = 1000; 
 
   function moveAt(e) {
-    ball.style.left = e.pageX - ball.offsetWidth / 2 + 'px';
-    ball.style.top = e.pageY - ball.offsetHeight / 2 + 'px'; 
+    if (e.pageX < 720) {
+      ball.style.left = 720- ball.offsetWidth / 2 + 'px';
+      ball.style.top =  500 - ball.offsetHeight / 2 + 'px'; 
+      angle=0;
+    }
+    else if (e.pageX > 920) {
+      ball.style.left = 920- ball.offsetWidth / 2 + 'px';
+      ball.style.top =  500 - ball.offsetHeight / 2 + 'px'; 
+      angle=180;
+    }
+    else {
+      ball.style.left = e.pageX - ball.offsetWidth / 2 + 'px';
+      ball.style.top = -Math.sqrt(10000 - (e.pageX-820)*(e.pageX-820)) + 500 - ball.offsetHeight / 2 + 'px'; 
+    }
   }
 
   document.onmousemove = function(e) {
+    findAngle();
     moveAt(e);
     linex=e.pageX-665;
-    liney=e.pageY-350;
+    liney=-Math.sqrt(10000 - (e.pageX-820)*(e.pageX-820)) + 500-350;
     drawLine();
-    findAngle();
+    console.log(angle);
   }
 
   ball.onmouseup = function() {
