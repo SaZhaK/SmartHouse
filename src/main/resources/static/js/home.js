@@ -197,8 +197,7 @@ function sleep(ms) {
 
 function buttonRedOnclick() {
     red();
-    buttonRed.className = 'red-button-active';
-    setTimeout('buttonRed.className = "red-button" ', 2000);
+    buttonRed.className = ( buttonRed.className == 'red-button-active' ? 'red-button' : 'red-button-active');
 }
 
 var buttonRed = document.getElementById("buttonRed");
@@ -232,8 +231,7 @@ function onReceiveGreen(message) {
 
 function buttonGreenOnclick() {
     green();
-    buttonGreen.className = 'green-button-active';
-    setTimeout('buttonGreen.className = "green-button" ', 2000);
+    buttonGreen.className = ( buttonGreen.className == 'green-button-active' ? 'green-button' : 'green-button-active');
 }
 
 var buttonGreen = document.getElementById("buttonGreen");
@@ -267,8 +265,7 @@ function onReceiveBlue(message) {
 
 function buttonBlueOnclick() {
     blue();
-    buttonBlue.className = 'blue-button-active';
-    setTimeout('buttonBlue.className = "blue-button" ', 2000);
+    buttonBlue.className = ( buttonBlue.className == 'blue-button-active' ? 'blue-button' : 'blue-button-active');
 }
 
 var buttonBlue = document.getElementById("buttonBlue");

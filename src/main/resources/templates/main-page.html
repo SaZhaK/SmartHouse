@@ -12,7 +12,6 @@
     <script th:src="@{js/newjoystick.js}"></script>
     <script th:src="@{js/home.js}" defer></script>
     <script th:src="@{js/canvas.js}" defer></script>
-
 </head>
 <body>
 
@@ -87,13 +86,15 @@
             <button id="joystickStart" class="button"><span class="enter">JoyStick Start</span></button>
             <button id="joystickStop" class="button"><span class="enter">JoyStick Stop</span></button>
         </div>
+        <div style="display: flex; justify-content: space-around;">
+            <button id="buttonFan" class="button"> <span class="enter">Button Fan</span></button>
+        </div>
     </div>
 </div>
 
 <!--    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />-->
 <!--    <input type="text" value="0" id="oy" class="joystick-input"  />-->
 
-<button id="buttonFan"> Button Fan</button>
 
 </body>
 </html>
