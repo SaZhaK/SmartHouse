@@ -1,96 +1,99 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Smart House</title>
-    <link rel="stylesheet" href="../static/css/joystick.css">
-    <link rel="stylesheet" href="../static/css/main-page.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Smart House</title>
+    <link rel="stylesheet" th:href="@{css/joystick.css}">
+    <link rel="stylesheet" th:href="@{css/main-page.css}">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="../static/js/newjoystick.js"></script>
-    <script src="../static/js/home.js" defer></script>
-    <script src="../static/js/canvas.js" defer></script>
-    
+    <script th:src="@{js/newjoystick.js}"></script>
+    <script th:src="@{js/home.js}" defer></script>
+    <script th:src="@{js/canvas.js}" defer></script>
+
 </head>
 <body>
 
-    <div class="header">
-        <div>
-            <h1 class="heading logo">SmartHouse</h1>
-        </div>
-        <div style="display: flex">
-            <form action="login.html">
-                <button class="button">
-                    <span class="enter">Войти</span>
-                    </button>
-            </form>
-            
-            <form action="registration.html">
-                <button class="button">
-                    <span class="enter">Зарегистрироваться</span>
-                </button>
-            </form>
-            
-        </div>
+<div class="header">
+    <div>
+        <h1 class="heading logo">SmartHouse</h1>
     </div>
-
-    <div class="page-content">
-        <div class="main-card">
-            <h1 class="heading">Светодиоды</h1>
-            <div class="color-buttons">
-                <button id="buttonRed" class= "red-button"></button>
-                <button id="buttonGreen" class= "green-button"></button>
-                <button id="buttonBlue" class= "blue-button"></button>
-            </div>
-        </div>
-        <div class="main-card voice-button-card">
-            <div class="voice-button-card-part">
-                <h1 class="heading">Звук</h1>
-                <button id="buttonSound" class="voice-button" onclick="this.className = (this.className == 'voice-button' ? 'voice-button-active' : 'voice-button')"></button>
-            </div>
-            <div class="voice-button-card-part">
-                <h1 class="heading">Кнопка</h1>
-                <button id="button-light" class="button-light"></button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- OLD JOISTICK -->
-    <!-- 
-    <div id="joistik" class="joistik">
-        <div class="joistmamipulator"></div>
-    
-    </div>
-    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
-    <input type="text" value="0" id="oy" class="joystick-input"  />
-    -->
     <div style="display: flex">
-        <div id="new-joistik" class="joistik">
-            <div class="new-joistmamipulator"></div>
-        </div>
-        <div style="margin-left: 10%">
-            <canvas id="canvas" width="300" height="300" style="position: absolute; "></canvas>
-            <canvas id="ball" width="100" height="300" style="position: relative; z-index: 1000"></canvas>
-            <canvas id="line" width="300" height="300" style=" position: relative;"></canvas>
-            <canvas id="first-line" width="300" height="300" style="position: absolute; margin-left: -24%;"></canvas>
+        <form action="login.html">
+            <button class="button">
+                <span class="enter">Войти</span>
+            </button>
+        </form>
 
-        </div>
-        <div class="main-card" style="margin: 0 1%; height: fit-content; position: absolute; margin-left: 65%;">
-            <div style="display: flex; justify-content: space-around;"> 
-                <button id="buttonStart" class="button"> <span class="enter">Button Start</span></button>
-                <button id="buttonStop" class="button"> <span class="enter">Button Stop</span></button>
-            </div>
-            <div style="display: flex; justify-content: space-around;"> 
-                <button id="joystickStart" class="button"> <span class="enter">JoyStick Start</span></button>
-                <button id="joystickStop" class="button"> <span class="enter">JoyStick Stop</span> </button>
-            </div>
+        <form action="registration.html">
+            <button class="button">
+                <span class="enter">Зарегистрироваться</span>
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="main-card">
+        <h1 class="heading">Светодиод</h1>
+        <div class="color-buttons">
+            <button id="buttonRed" class="red-button"></button>
+            <button id="buttonGreen" class="green-button"></button>
+            <button id="buttonBlue" class="blue-button"></button>
         </div>
     </div>
+    <div class="main-card voice-button-card">
+        <div class="voice-button-card-part">
+            <h1 class="heading">Звук</h1>
+            <button id="buttonSound" class="voice-button"
+                    onclick="this.className = (this.className == 'voice-button' ? 'voice-button-active' : 'voice-button')"></button>
+        </div>
+        <div class="voice-button-card-part">
+            <h1 class="heading">Кнопка</h1>
+            <button id="button-light" class="button-light"></button>
+        </div>
+    </div>
+</div>
+
+<!-- OLD JOISTICK -->
+<!--
+<div id="joistik" class="joistik">
+    <div class="joistmamipulator"></div>
+
+</div>
+<input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
+<input type="text" value="0" id="oy" class="joystick-input"  />
+-->
+<div style="display: flex">
+    <div id="new-joistik" class="joistik">
+        <div class="new-joistmamipulator"></div>
+    </div>
+    <div style="margin-left: 10%">
+        <canvas id="canvas" width="300" height="300" style="position: absolute; "></canvas>
+        <canvas id="ball" width="100" height="300" style="position: relative; z-index: 1000"></canvas>
+        <canvas id="line" width="300" height="300" style=" position: relative;"></canvas>
+        <canvas id="first-line" width="300" height="300" style="position: absolute; margin-left: -24%;"></canvas>
+
+    </div>
+    <div class="main-card" style="margin: 0 1%; height: fit-content; position: absolute; margin-left: 65%;">
+        <div style="display: flex; justify-content: space-around;">
+            <button id="buttonStart" class="button"><span class="enter">Button Start</span></button>
+            <button id="buttonStop" class="button"><span class="enter">Button Stop</span></button>
+        </div>
+        <div style="display: flex; justify-content: space-around;">
+            <button id="joystickStart" class="button"><span class="enter">JoyStick Start</span></button>
+            <button id="joystickStop" class="button"><span class="enter">JoyStick Stop</span></button>
+        </div>
+    </div>
+</div>
 
 <!--    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />-->
 <!--    <input type="text" value="0" id="oy" class="joystick-input"  />-->
 
+<button id="buttonFan"> Button Fan</button>
 
 </body>
 </html>

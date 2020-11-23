@@ -21,6 +21,10 @@ public class USBConnector {
     private static boolean sendButton = false;
     private static boolean sendJoyStick = false;
     private static boolean sound = false;
+    private static boolean fan = false;
+    private static boolean red = false;
+    private static boolean green = false;
+    private static boolean blue = false;
     public static Queue<String> buttonData = new ArrayBlockingQueue(21);
     public static Queue<String> joyStickData = new ArrayBlockingQueue<>(21);
 
@@ -94,7 +98,7 @@ public class USBConnector {
             if (USBConnector.sound) {
                 serialPort.writeString("sound");
             } else {
-                serialPort.writeString("stop");
+                serialPort.writeString("stopSound");
             }
         } catch (SerialPortException e) {
             e.printStackTrace();
@@ -102,24 +106,55 @@ public class USBConnector {
     }
 
     public void red() {
+        USBConnector.red = !USBConnector.red;
         try {
-            serialPort.writeString("red");
+            if (USBConnector.red) {
+                serialPort.writeString("red");
+
+            } else {
+                serialPort.writeString("stopRed");
+            }
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
     }
 
     public void green() {
+        USBConnector.green = !USBConnector.green;
         try {
-            serialPort.writeString("green");
+            if (USBConnector.green) {
+                serialPort.writeString("green");
+
+            } else {
+                serialPort.writeString("stopGreen");
+            }
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
     }
 
     public void blue() {
+        USBConnector.blue = !USBConnector.blue;
         try {
-            serialPort.writeString("blue");
+            if (USBConnector.blue) {
+                serialPort.writeString("blue");
+
+            } else {
+                serialPort.writeString("stopBlue");
+            }
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void fan() {
+        USBConnector.fan = !USBConnector.fan;
+        try {
+            if (USBConnector.fan) {
+                serialPort.writeString("fan");
+            } else {
+                serialPort.writeString("stopFan");
+            }
         } catch (SerialPortException e) {
             e.printStackTrace();
         }

@@ -198,7 +198,7 @@ function sleep(ms) {
 function buttonRedOnclick() {
     red();
     buttonRed.className = 'red-button-active';
-    setTimeout('buttonRed.className = "red-button" ', 1000);
+    setTimeout('buttonRed.className = "red-button" ', 2000);
 }
 
 var buttonRed = document.getElementById("buttonRed");
@@ -233,7 +233,7 @@ function onReceiveGreen(message) {
 function buttonGreenOnclick() {
     green();
     buttonGreen.className = 'green-button-active';
-    setTimeout('buttonGreen.className = "green-button" ', 1000);
+    setTimeout('buttonGreen.className = "green-button" ', 2000);
 }
 
 var buttonGreen = document.getElementById("buttonGreen");
@@ -268,11 +268,46 @@ function onReceiveBlue(message) {
 function buttonBlueOnclick() {
     blue();
     buttonBlue.className = 'blue-button-active';
-    setTimeout('buttonBlue.className = "blue-button" ', 1000);
+    setTimeout('buttonBlue.className = "blue-button" ', 2000);
 }
 
 var buttonBlue = document.getElementById("buttonBlue");
 buttonBlue.onclick = buttonBlueOnclick;
+
+
+
+var fanWS;
+
+function connectFan() {
+	fanWS = new WebSocket('ws://localhost:8080/fan');
+	fanWS.onmessage = function(data){
+		onReceiveFan(data.data);
+	}
+}
+
+function disconnectFan() {
+    if (fanWS != null) {
+        fanWS.close();
+    }
+    console.log("Disconnected");
+}
+
+function fan() {
+    fanWS.send("fan");
+}
+
+function onReceiveFan(message) {
+    console.log(message);
+}
+
+function buttonFanOnclick() {
+    fan();
+}
+
+var buttonFan = document.getElementById("buttonFan");
+buttonFan.onclick = buttonFanOnclick;
+
+
 
 window.onload = function() {
     connectButton();
@@ -284,4 +319,6 @@ window.onload = function() {
     connectBlue();
 
     connectAngle();
+
+    connectFan();
 };

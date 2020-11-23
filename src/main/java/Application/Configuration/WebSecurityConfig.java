@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/green/**").permitAll()
                 .antMatchers("/blue/**").permitAll()
                 .antMatchers("/angle/**").permitAll()
+                .antMatchers("/fan/**").permitAll()
                 .antMatchers("/js/**").permitAll()
                 .antMatchers("/registration").not().fullyAuthenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")

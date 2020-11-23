@@ -17,5 +17,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
         registry.addHandler(new SocketGreenDataHandler(), "/green");
         registry.addHandler(new SocketBlueDataHandler(), "/blue");
         registry.addHandler(new SocketAngleDataHandler(), "/angle");
+        registry.addHandler(new SocketFanDataHandler(), "/fan");
     }
 }
