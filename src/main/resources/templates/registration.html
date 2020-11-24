@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
 <header>
@@ -15,7 +15,7 @@
         <form method="POST" modelAttribute="userForm" th:object="${user}">
 
             <p class="heading">Логин:</p>
-            <input class="input-field" type="email" th:field="${user.username}" placeholder="Username" autofocus="true">
+            <input class="input-field" type="text" th:field="${user.username}" placeholder="Username" autofocus="true">
 
             <p class="heading">Пароль:</p>
             <input class="input-field" type="password" th:field="${user.password}" placeholder="Password"> <br>

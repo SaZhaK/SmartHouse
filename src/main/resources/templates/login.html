@@ -6,17 +6,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" th:href="@{css/style.css}">
 </head>
 <body>
 <header>
 </header>
 <main>
     <div class="main-card">
-        <form method="POST" action="/login" th:object="${user}">
+        <form method="POST" th:object="${user}">
             <p class="heading">Логин:</p>
             <input name="username" th:field="${user.username}"
-                   class="input-field" type="email" placeholder="Username" autofocus="true">
+                   class="input-field" type="text" placeholder="Username" autofocus="true">
 
             <p class="heading">Пароль:</p>
             <input class="input-field" name="password" th:field="${user.password}"

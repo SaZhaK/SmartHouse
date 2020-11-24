@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,10 +16,7 @@ import java.util.Collections;
 public class UserService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    //Todo remove
     private JdbcTemplate jdbc;
 
     @Autowired
@@ -57,7 +53,6 @@ public class UserService implements UserDetailsService {
         }
 
         user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         jdbc.update("insert into user_to_role (user_id, role_id) values (?,?)",
                 userRepository.findByUsername(user.getUsername()).getId(), 1);

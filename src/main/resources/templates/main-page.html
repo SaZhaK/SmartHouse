@@ -9,7 +9,6 @@
     <link rel="stylesheet" th:href="@{css/main-page.css}">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script th:src="@{js/newjoystick.js}"></script>
     <script th:src="@{js/home.js}" defer></script>
     <script th:src="@{js/canvas.js}" defer></script>
 </head>
@@ -20,13 +19,13 @@
         <h1 class="heading logo">SmartHouse</h1>
     </div>
     <div style="display: flex">
-        <form action="login.html">
+        <form action="/login">
             <button class="button">
                 <span class="enter">Войти</span>
             </button>
         </form>
 
-        <form action="registration.html">
+        <form action="/registration">
             <button class="button">
                 <span class="enter">Зарегистрироваться</span>
             </button>
@@ -57,15 +56,6 @@
     </div>
 </div>
 
-<!-- OLD JOISTICK -->
-<!--
-<div id="joistik" class="joistik">
-    <div class="joistmamipulator"></div>
-
-</div>
-<input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />
-<input type="text" value="0" id="oy" class="joystick-input"  />
--->
 <div style="display: flex">
     <div id="new-joistik" class="joistik">
         <div class="new-joistmamipulator"></div>
@@ -79,22 +69,18 @@
     </div>
     <div class="main-card" style="margin: 0 1%; height: fit-content; position: absolute; margin-left: 65%;">
         <div style="display: flex; justify-content: space-around;">
-            <button id="buttonStart" class="button"><span class="enter">Button Start</span></button>
-            <button id="buttonStop" class="button"><span class="enter">Button Stop</span></button>
+            <button id="buttonStart" class="button"><span class="enter">Start Button</span></button>
+            <button id="buttonStop" class="button"><span class="enter">Stop Button</span></button>
         </div>
         <div style="display: flex; justify-content: space-around;">
-            <button id="joystickStart" class="button"><span class="enter">JoyStick Start</span></button>
-            <button id="joystickStop" class="button"><span class="enter">JoyStick Stop</span></button>
+            <button id="joystickStart" class="button"><span class="enter">Start JoyStick</span></button>
+            <button id="joystickStop" class="button"><span class="enter">Stop JoyStick</span></button>
         </div>
         <div style="display: flex; justify-content: space-around;">
-            <button id="buttonFan" class="button"> <span class="enter">Button Fan</span></button>
+            <button id="buttonFan" class="button"> <span class="enter">Fan</span></button>
         </div>
     </div>
 </div>
-
-<!--    <input type="text" value="0" id="ox" style="margin-top: 50px " class="joystick-input" /><br />-->
-<!--    <input type="text" value="0" id="oy" class="joystick-input"  />-->
-
 
 </body>
 </html>
