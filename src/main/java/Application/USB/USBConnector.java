@@ -22,9 +22,6 @@ public class USBConnector {
     private static boolean sendJoyStick = false;
     private static boolean sound = false;
     private static boolean fan = false;
-    private static boolean red = false;
-    private static boolean green = false;
-    private static boolean blue = false;
     public static Queue<String> buttonData = new ArrayBlockingQueue(21);
     public static Queue<String> joyStickData = new ArrayBlockingQueue<>(21);
 
@@ -105,43 +102,25 @@ public class USBConnector {
         }
     }
 
-    public void red() {
-        USBConnector.red = !USBConnector.red;
+    public void red(String data) {
         try {
-            if (USBConnector.red) {
-                serialPort.writeString("red");
-
-            } else {
-                serialPort.writeString("stopRed");
-            }
+            serialPort.writeString("r" + data.substring(3));
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
     }
 
-    public void green() {
-        USBConnector.green = !USBConnector.green;
+    public void green(String data) {
         try {
-            if (USBConnector.green) {
-                serialPort.writeString("green");
-
-            } else {
-                serialPort.writeString("stopGreen");
-            }
+            serialPort.writeString("g" + data.substring(5));
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
     }
 
-    public void blue() {
-        USBConnector.blue = !USBConnector.blue;
+    public void blue(String data) {
         try {
-            if (USBConnector.blue) {
-                serialPort.writeString("blue");
-
-            } else {
-                serialPort.writeString("stopBlue");
-            }
+            serialPort.writeString("b" + data.substring(4));
         } catch (SerialPortException e) {
             e.printStackTrace();
         }

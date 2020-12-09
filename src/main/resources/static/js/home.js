@@ -164,24 +164,6 @@ window.onload = function() {
     connectSound();
 };
 
-var red = document.getElementById("red");
-
-function redColor() {
-  console.log(red.value);
-}
-
-var green = document.getElementById("green");
-
-function greenColor() {
-  console.log(green.value);
-}
-
-var blue = document.getElementById("blue");
-
-function blueColor() {
-  console.log(blue.value);
-}
-
 var redWS;
 
 function connectRed() {
@@ -198,26 +180,15 @@ function disconnectRed() {
     console.log("Disconnected");
 }
 
-function red() {
-    redWS.send("red");
+function redColor() {
+  redWS.send("red" + red.value);
 }
 
 function onReceiveRed(message) {
     console.log(message);
 }
 
-function sleep(ms) {
-    ms += new Date().getTime();
-    while (new Date() < ms){}
-}
-
-function buttonRedOnclick() {
-    red();
-    buttonRed.className = ( buttonRed.className == 'red-button-active' ? 'red-button' : 'red-button-active');
-}
-
-var buttonRed = document.getElementById("buttonRed");
-buttonRed.onclick = buttonRedOnclick;
+var red = document.getElementById("red");
 
 
 
@@ -237,21 +208,15 @@ function disconnectSound() {
     console.log("Disconnected");
 }
 
-function green() {
-    greenWS.send("green");
+function greenColor() {
+  greenWS.send("green" + green.value);
 }
 
 function onReceiveGreen(message) {
     console.log(message);
 }
 
-function buttonGreenOnclick() {
-    green();
-    buttonGreen.className = ( buttonGreen.className == 'green-button-active' ? 'green-button' : 'green-button-active');
-}
-
-var buttonGreen = document.getElementById("buttonGreen");
-buttonGreen.onclick = buttonGreenOnclick;
+var green = document.getElementById("green");
 
 
 
@@ -271,21 +236,15 @@ function disconnectBlue() {
     console.log("Disconnected");
 }
 
-function blue() {
-    blueWS.send("blue");
+function blueColor() {
+  blueWS.send("blue" + blue.value);
 }
 
 function onReceiveBlue(message) {
     console.log(message);
 }
 
-function buttonBlueOnclick() {
-    blue();
-    buttonBlue.className = ( buttonBlue.className == 'blue-button-active' ? 'blue-button' : 'blue-button-active');
-}
-
-var buttonBlue = document.getElementById("buttonBlue");
-buttonBlue.onclick = buttonBlueOnclick;
+var blue = document.getElementById("blue");
 
 
 

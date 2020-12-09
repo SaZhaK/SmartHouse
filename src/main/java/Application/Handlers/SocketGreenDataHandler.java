@@ -16,8 +16,8 @@ public class SocketGreenDataHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         USBConnector connector = new USBConnector();
-        if (message.getPayload().equals("green")) {
-            connector.green();
+        if (message.getPayload().startsWith("green")) {
+            connector.green(message.getPayload());
         }
     }
 

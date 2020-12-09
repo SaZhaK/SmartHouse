@@ -16,8 +16,8 @@ public class SocketBlueDataHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
         USBConnector connector = new USBConnector();
-        if (message.getPayload().equals("blue")) {
-            connector.blue();
+        if (message.getPayload().startsWith("blue")) {
+            connector.blue(message.getPayload());
         }
     }
 
