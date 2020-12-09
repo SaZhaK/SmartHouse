@@ -45,6 +45,7 @@ input {
     padding: 12px;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     margin: 15px 0;
+    background: rgb(239, 239, 239);
 }
 
 button:focus {

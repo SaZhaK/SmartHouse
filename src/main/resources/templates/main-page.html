@@ -35,6 +35,7 @@
 </div>
 
 <div class="page-content">
+    <!-- 
     <div class="main-card" style=" margin-left: 300px;">
         <h1 class="heading">Светодиод</h1>
         <div class="color-buttons">
@@ -42,6 +43,13 @@
             <button id="buttonGreen" class="green-button"></button>
             <button id="buttonBlue" class="blue-button"></button>
         </div>
+    </div> 
+    -->
+    <div class="main-card">
+        <h1 class="heading" style="margin-top: 0; margin-bottom: 10px">Светодиод</h1>
+        <input type="range" min="0" max="255" step="1" value="0" id="red" onchange="redColor()" style="margin-bottom: 10px"> <br>
+        <input type="range" min="0" max="255" step="1" value="0" id="green" onchange="greenColor()" style="margin-bottom: 10px"> <br>
+        <input type="range" min="0" max="255" step="1" value="0" id="blue" onchange="blueColor()"> 
     </div>
     <div class="main-card voice-button-card">
         <div class="voice-button-card-part">

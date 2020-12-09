@@ -164,7 +164,23 @@ window.onload = function() {
     connectSound();
 };
 
+var red = document.getElementById("red");
 
+function redColor() {
+  console.log(red.value);
+}
+
+var green = document.getElementById("green");
+
+function greenColor() {
+  console.log(green.value);
+}
+
+var blue = document.getElementById("blue");
+
+function blueColor() {
+  console.log(blue.value);
+}
 
 var redWS;
 
