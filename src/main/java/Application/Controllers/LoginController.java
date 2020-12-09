@@ -29,7 +29,7 @@ public class LoginController {
         User userFromDb = (User) userService.loadUserByUsername(user.getUsername());
 
         if (userFromDb != null && user.getPassword().equals(userFromDb.getPassword())) {
-            return "//main-page";
+            return "/main-page";
         } else {
             return "/login";
         }
